@@ -1,0 +1,17 @@
+{
+  "presets": ["es2015", "react"],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "applicationStyles": "./common/styles/app.scss",
+        "components": "./common/components/index.jsx",
+        "containers": "./common/containers/index.jsx",
+        "actions": "./common/actions/index.js",
+        "reducers": "./common/reducers/index.js",
+        "configureStore": "./common/store/configureStore",
+        "api": "./common/api/index.js",
+        "routes": "./common/routes.jsx"
+      }
+    }]
+  ]
+}
