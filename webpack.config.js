@@ -15,11 +15,15 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    // new ExtractTextPlugin('[name]-[hash].css'),
+    new ExtractTextPlugin('[name]-[hash].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      '__CLIENT__': true,
+      '__SERVER__': false,
+      '__DEV__': true,
+      '__DEVTOOLS__': true
     })
   ],
   module: {
@@ -53,23 +57,26 @@ module.exports = {
       }, {
         test: /\.(jpe?g|png|gif|svg)$/,
         loader: 'url-loader'
+      // }, {
+      //   test: /\.css$/,
+      //   loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+
       }, {
-        test: /\.s?css$/,
-        loaders: [
-          'isomorphic-style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-          // 'isomorphic-style-loader',
-          // 'css-loader?modules&localIdentName=[name]_[local]_[hash:base64:3]',
-          // 'postcss-loader',
-          // 'sass-loader'
-          // 'isomorphic-style-loader',
-          // 'style-loader',
-          // 'css-loader',
-          // 'postcss-loader',
-        ]
-        // loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+        test: /\.scss$/,
+        // loaders: [
+        //   // 'isomorphic-style-loader',
+        //   'style-loader',
+        //   'css-loader',
+        //   'sass-loader'
+        // ]
+        // loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        // loaders: [
+        //   'isomorphic-style-loader',
+        //   'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        //   'postcss-loader',
+        //   'sass-loader'
+        // ]
+        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
         // loader: 'style!css!postcss!sass'
       }
     ]

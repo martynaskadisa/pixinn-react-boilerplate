@@ -7,21 +7,18 @@ const configureStore = (initialState) => {
     routing: routerReducer
   })
 
-  // const store = createStore(reducer, initialState, compose(
-  //   applyMiddleware(thunk),
-  //   window.devToolsExtension ? window.devToolsExtension() : f => f
-  // ))
-  // const middleware = window && process.env.NODE_ENV === 'development'
-  //   ? compose(
-  //     applyMiddleware(thunk),
-  //     window.devToolsExtension ? window.devToolsExtension() : f => f
-  //   )
-  //   : compose(
-  //     applyMiddleware(thunk),
-  //     f => f
-  //   )
-  // console.log(process.env.NODE_ENV)
-  const store = createStore(reducer, initialState, applyMiddleware(thunk))
+  let middleware
+
+  if (__DEVTOOLS__ && __CLIENT__ && __DEV__) {
+    middleware = compose(
+      applyMiddleware(thunk),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+  } else {
+    middleware = applyMiddleware(thunk)
+  }
+
+  const store = createStore(reducer, initialState, middleware)
 
   return store
 }

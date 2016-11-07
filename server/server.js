@@ -1,3 +1,4 @@
+import './config'
 import path from 'path'
 import Express from 'express'
 import morgan from 'morgan'
