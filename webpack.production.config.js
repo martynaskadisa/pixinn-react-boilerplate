@@ -7,9 +7,10 @@ var StatsPlugin = require('stats-webpack-plugin')
 var webpackConfig = require('./webpack.config.js')
 
 webpackConfig.devtool = 'source-map'
-webpackConfig.entry = [
-  path.join(__dirname, 'client/index.jsx')
-]
+webpackConfig.entry = {
+  app: path.join(__dirname, 'client/index.jsx'),
+  vendor: ['react', 'react-dom', 'react-router', 'redux', 'react-router-redux']
+}
 // webpackConfig.output.filename = '[name]-[hash].min.js'
 webpackConfig.plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
@@ -24,6 +25,7 @@ webpackConfig.plugins = [
     source: false,
     modules: false
   }),
+  new webpack.optimize.CommonsChunkPlugin(/* chunkName= */'vendor', /* filename= */'vendor.bundle.js'),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     '__CLIENT__': true,
