@@ -1,11 +1,10 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import Helmet from 'react-helmet'
 
 import { Hello } from 'components'
-if (__CLIENT__) require('./App.scss')
 
-class App extends React.Component {
+class App extends Component {
   render () {
     return (
       <div>

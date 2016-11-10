@@ -50,7 +50,7 @@ function handleRender (req, res) {
 
   match({ history, routes, location: req.originalUrl }, (error, redirectLocation, renderProps) => {
     if (error) {
-      return res.status(500).send(error.message)
+      return res.status(500).send(__DEV__ ? error.message : 'Oops, you broke it!')
     }
 
     if (redirectLocation) {

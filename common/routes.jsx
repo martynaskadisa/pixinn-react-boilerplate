@@ -8,6 +8,6 @@ export default (
     <IndexRoute name='home' component={Home} />
     <Route name='about' path='about' component={About} />
     <Route name='contact' path='contact' component={Contact} />
-    <Route name='not-found' path='*' component={NoMatch} status={400} />
+    <Route name='not-found' path='*' component={NoMatch} status={404} />
   </Route>
 )

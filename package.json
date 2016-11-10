@@ -76,6 +76,7 @@
     "stats-webpack-plugin": "^0.4.2",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.0"
+    "webpack-hot-middleware": "^2.13.0",
+    "webpack-isomorphic-tools": "^2.6.4"
   }
 }

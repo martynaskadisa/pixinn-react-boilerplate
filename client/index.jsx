@@ -8,6 +8,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import routes from 'routes'
 import configureStore from 'configureStore'
 
+import 'appStyles'
+
 const preloadedState = window.__PRELOADED_STATE__
 const store = configureStore(preloadedState)
 const history = syncHistoryWithStore(browserHistory, store)
