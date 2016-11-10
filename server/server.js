@@ -14,20 +14,31 @@ import { Provider } from 'react-redux'
 import { match, RouterContext } from 'react-router'
 import createHistory from 'react-router/lib/createMemoryHistory'
 import { syncHistoryWithStore } from 'react-router-redux'
+import Helmet from 'react-helmet'
 
 import configureStore from 'configureStore'
 import routes from 'routes'
 
 const app = new Express()
-const port = 3000
+const port = process.env.PORT || 3000
 
-// Use this middleware to set up hot module reloading via webpack.
-const compiler = webpack(webpackConfig)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+app.set('view engine', 'ejs')
 
-app.use(morgan('dev'))
-app.get('*', handleRender)
+if (__DEV__) {
+  // Use this middleware to set up hot module reloading via webpack.
+  const compiler = webpack(webpackConfig)
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
+  app.use(webpackHotMiddleware(compiler))
+
+  app.use(morgan('dev'))
+  app.get('*', handleRender)
+} else {
+  app.use(morgan('combined'))
+  app.use('/static', Express.static('dist'))
+  app.get('*', (req, res) => {
+    res.render('app')
+  })
+}
 
 function handleRender (req, res) {
   // Call ajax here and on complete continue
@@ -52,6 +63,9 @@ function handleRender (req, res) {
           <RouterContext {...renderProps} />
         </Provider>
       )
+
+      let head = Helmet.rewind()
+      console.log(JSON.stringify(head, undefined, 2))
       const finalState = store.getState()
 
       return res.status(200).send(renderFullPage(html, finalState))

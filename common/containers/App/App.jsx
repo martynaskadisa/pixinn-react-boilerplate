@@ -1,15 +1,19 @@
 import React, { PropTypes } from 'react'
-// import withStyles from 'isomorphic-style-loader/lib/withStyles'
+import Helmet from 'react-helmet'
 
 import { Hello } from 'components'
-// import s from 'applicationStyles'
-// import './App.scss'
 if (__CLIENT__) require('./App.scss')
 
 class App extends React.Component {
   render () {
     return (
       <div>
+        <Helmet
+          htmlAttributes={{'lang': 'lt'}}
+          titleTemplate='Pixinn - %s'
+          defaultTitle='Pixinn - Internetinių svetainių kūrimas'
+          base={{'target': '_blank', 'href': 'http://www.pixinn.lt/'}}
+        />
         <div className='root'>
           <p>Yo</p>
         </div>
