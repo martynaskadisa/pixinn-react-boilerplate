@@ -1,9 +1,15 @@
 import React, { PropTypes } from 'react'
+import Helmet from 'react-helmet'
 
 class Contact extends React.Component {
   render () {
     return (
-      <h1>Contact</h1>
+      <div>
+        <Helmet
+          title='Contact'
+        />
+        <h1>Contact</h1>
+      </div>
     )
   }
 }

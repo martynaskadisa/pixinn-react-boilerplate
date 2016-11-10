@@ -2,6 +2,7 @@ import './config'
 import path from 'path'
 import Express from 'express'
 import morgan from 'morgan'
+import compression from 'compression'
 
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
@@ -14,15 +15,15 @@ import { Provider } from 'react-redux'
 import { match, RouterContext } from 'react-router'
 import createHistory from 'react-router/lib/createMemoryHistory'
 import { syncHistoryWithStore } from 'react-router-redux'
-import Helmet from 'react-helmet'
 
 import configureStore from 'configureStore'
 import routes from 'routes'
+import Html from './html'
 
 const app = new Express()
 const port = process.env.PORT || 3000
 
-app.set('view engine', 'ejs')
+app.use(compression())
 
 if (__DEV__) {
   // Use this middleware to set up hot module reloading via webpack.
@@ -31,13 +32,12 @@ if (__DEV__) {
   app.use(webpackHotMiddleware(compiler))
 
   app.use(morgan('dev'))
+  // app.use('/static', Express.static('dist'))
   app.get('*', handleRender)
 } else {
   app.use(morgan('combined'))
   app.use('/static', Express.static('dist'))
-  app.get('*', (req, res) => {
-    res.render('app')
-  })
+  app.get('*', handleRender)
 }
 
 function handleRender (req, res) {
@@ -58,45 +58,29 @@ function handleRender (req, res) {
     }
 
     if (renderProps) {
-      const html = renderToString(
+      const currentRoute = renderProps.routes[renderProps.routes.length - 1]
+      res.status(currentRoute.status || 200)
+
+      const component = (
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>
       )
+      const html = '<!doctype html\n' + renderToString(<Html store={store} component={component} />)
 
-      let head = Helmet.rewind()
-      console.log(JSON.stringify(head, undefined, 2))
-      const finalState = store.getState()
-
-      return res.status(200).send(renderFullPage(html, finalState))
+      return res.send(html)
     }
 
     return res.status(404).send('Not found')
   })
 }
 
-function renderFullPage (html, preloadedState) {
-  return `
-  <!doctype html>
-  <html>
-    <head>
-      <title>Pixinn react boilerplate</title>
-    </head>
-    <body>
-      <div id="app">${html}</div>
-      <script>
-        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\x3c')}
-      </script>
-      <script src="/static/bundle.js"></script>
-    </body>
-  </html>
-  `
-}
-
 app.listen(port, (error) => {
   if (error) {
     console.error(error)
   } else {
-    console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
+    console.info(
+      `==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\nenv: ${__DEV__ ? 'development' : 'production'}`
+    )
   }
 })

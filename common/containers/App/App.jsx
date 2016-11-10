@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import Helmet from 'react-helmet'
 
 import { Hello } from 'components'
@@ -12,10 +13,13 @@ class App extends React.Component {
           htmlAttributes={{'lang': 'lt'}}
           titleTemplate='Pixinn - %s'
           defaultTitle='Pixinn - Internetinių svetainių kūrimas'
-          base={{'target': '_blank', 'href': 'http://www.pixinn.lt/'}}
         />
         <div className='root'>
-          <p>Yo</p>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
+          </ul>
         </div>
         <Hello />
         {this.props.children}

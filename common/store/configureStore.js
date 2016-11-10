@@ -1,24 +1,26 @@
-import { combineReducers, createStore, compose, applyMiddleware } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { routerMiddleware } from 'react-router-redux'
 
-const configureStore = (initialState) => {
-  const reducer = combineReducers({
-    routing: routerReducer
-  })
+import reducer from './reducer'
 
-  let middleware
+const configureStore = (history, client, data) => {
+  const reduxRouterMiddleware = routerMiddleware(history)
+
+  const middleware = [thunk, reduxRouterMiddleware]
+
+  let finalConfigureStore
 
   if (__DEVTOOLS__ && __CLIENT__ && __DEV__) {
-    middleware = compose(
-      applyMiddleware(thunk),
+    finalConfigureStore = compose(
+      applyMiddleware(...middleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+    )(createStore)
   } else {
-    middleware = applyMiddleware(thunk)
+    finalConfigureStore = applyMiddleware(...middleware)(createStore)
   }
 
-  const store = createStore(reducer, initialState, middleware)
+  const store = finalConfigureStore(reducer, data)
 
   return store
 }
