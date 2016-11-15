@@ -1,6 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'))
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -23,7 +25,8 @@ module.exports = {
       '__SERVER__': false,
       '__DEV__': true,
       '__DEVTOOLS__': true
-    })
+    }),
+    webpackIsomorphicToolsPlugin.development()
   ],
   module: {
     loaders: [

@@ -5,6 +5,8 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var StatsPlugin = require('stats-webpack-plugin')
 var webpackConfig = require('./webpack.config.js')
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'))
 
 webpackConfig.devtool = 'source-map'
 webpackConfig.entry = {
@@ -32,7 +34,8 @@ webpackConfig.plugins = [
     '__SERVER__': false,
     '__DEV__': false,
     '__DEVTOOLS__': false
-  })
+  }),
+  webpackIsomorphicToolsPlugin
 ]
 webpackConfig.module.loaders[0].query.presets = undefined
 
