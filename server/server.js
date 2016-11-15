@@ -18,7 +18,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from 'configureStore'
 import routes from 'routes'
-import Html from './html'
+import { Html } from 'helpers'
 
 const app = new Express()
 const port = process.env.PORT || 3000

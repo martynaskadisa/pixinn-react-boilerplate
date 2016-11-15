@@ -3,14 +3,15 @@
   "plugins": [
     ["module-resolver", {
       "alias": {
-        "applicationStyles": "./common/styles/app.scss",
-        "components": "./common/components/index.jsx",
-        "containers": "./common/containers/index.jsx",
+        "appStyles": "./common/styles/app.scss",
+        "components": "./common/components/index.js",
+        "containers": "./common/containers/index.js",
         "actions": "./common/actions/index.js",
         "reducers": "./common/reducers/index.js",
         "configureStore": "./common/store/configureStore",
         "api": "./common/api/index.js",
-        "routes": "./common/routes.jsx"
+        "routes": "./common/routes.jsx",
+        "helpers": "./common/helpers/index.js"
       }
     }]
   ]

@@ -15,7 +15,6 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -63,12 +62,12 @@ module.exports = {
 
       }, {
         test: /\.scss$/,
-        // loaders: [
-        //   // 'isomorphic-style-loader',
-        //   'style-loader',
-        //   'css-loader',
-        //   'sass-loader'
-        // ]
+        loaders: [
+          'isomorphic-style-loader',
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
         // loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         // loaders: [
         //   'isomorphic-style-loader',
@@ -76,8 +75,9 @@ module.exports = {
         //   'postcss-loader',
         //   'sass-loader'
         // ]
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+        // loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
         // loader: 'style!css!postcss!sass'
+
       }
     ]
   },
@@ -92,16 +92,7 @@ module.exports = {
     modulesDirectories: [
       'node_modules'
     ],
-    alias: {
-      applicationStyles: 'common/styles/app.scss',
-      components: 'common/components/index.jsx',
-      containers: 'common/containers/index.jsx',
-      actions: 'common/actions/index.js',
-      reducers: 'common/reducers/index.js',
-      configureStore: 'common/store/configureStore',
-      api: 'common/api/index.js',
-      routes: 'common/routes.jsx'
-    },
+    alias: { /* Use .babelrc to set up aliases */ },
     extensions: ['', '.js', '.jsx']
   },
   sassLoader: {
