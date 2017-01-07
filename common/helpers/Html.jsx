@@ -39,7 +39,7 @@ class Html extends Component {
           <div id='app' dangerouslySetInnerHTML={{__html: content}} />
           <script dangerouslySetInnerHTML={{__html: `window.__PRELOADED_STATE__=${serialize(store.getState())};`}} charSet='UTF-8' />
           {/* <script src='/vendor.bundle.js' charSet='UTF-8' /> */}
-          <script src='/bundle.js' charSet='UTF-8' />
+          <script src='/bundle.js' charSet='UTF-8' async />
           {/* <script src={assets.javascript.main} charSet='UTF-8' /> */}
         </body>
       </html>

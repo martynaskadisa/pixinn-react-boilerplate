@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var StatsPlugin = require('stats-webpack-plugin')
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     './client/index.jsx'
   ],
@@ -26,7 +26,8 @@ module.exports = {
       compressor: {
         warnings: false,
         screw_ie8: true
-      }
+      },
+      comments: false
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -67,7 +68,6 @@ module.exports = {
   },
   postcss: function () {
     return [
-      require('precss'),
       require('autoprefixer')
     ]
   },

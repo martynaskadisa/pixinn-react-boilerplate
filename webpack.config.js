@@ -16,7 +16,6 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
@@ -72,7 +71,6 @@ module.exports = {
   },
   postcss: function () {
     return [
-      require('precss'),
       require('autoprefixer')
     ]
   },
