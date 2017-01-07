@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import style from './About.scss'
+
 class About extends React.Component {
   render () {
     return (

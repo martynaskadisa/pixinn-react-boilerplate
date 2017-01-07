@@ -3,7 +3,9 @@ import Express from 'express'
 import compression from 'compression'
 import morgan from 'morgan'
 
-import { renderHandler } from './handlers/renderHandler'
+import renderHandler from '../bin/renderHandler'
+
+console.log(renderHandler)
 
 const app = new Express()
 const port = process.env.PORT || 3000

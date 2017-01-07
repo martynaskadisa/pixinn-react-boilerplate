@@ -4,6 +4,7 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var StatsPlugin = require('stats-webpack-plugin')
+var CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -16,6 +17,8 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin('app.min.css'), // [name]-[hash].min.js
     new StatsPlugin('webpack.stats.json', {
@@ -30,11 +33,18 @@ module.exports = {
       comments: false
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), // // Needed in order to use minified version of React
       '__CLIENT__': true,
       '__SERVER__': false,
       '__DEV__': false,
       '__DEVTOOLS__': false // Toggle Redux DevTools here
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   ],
   module: {
@@ -63,7 +73,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url-loader'
+      loader: 'file-loader'
     }]
   },
   postcss: function () {

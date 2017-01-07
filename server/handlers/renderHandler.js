@@ -1,4 +1,3 @@
-// React stuff
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
@@ -9,9 +8,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from 'configureStore'
 import routes from 'routes'
 import { Html } from 'helpers'
-// No more React stuff
 
-export function renderHandler (req, res) {
+function renderHandler (req, res) {
   // Call ajax here and on complete continue
   const memoryHistory = createHistory(req.originalUrl)
   const store = configureStore(memoryHistory)
@@ -45,3 +43,5 @@ export function renderHandler (req, res) {
     return res.status(404).send('Not found')
   })
 }
+
+export default renderHandler

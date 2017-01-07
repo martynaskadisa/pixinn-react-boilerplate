@@ -9,8 +9,8 @@ class Home extends React.Component {
           title='Home'
         />
         <h1>Home</h1>
-        {/* <img src={require('../../images/300.jpg')} alt='' /> */ /* Server chokes on this */}
-        <img src='../../images/300.jpg' alt='' />
+        <img src={require('../../images/300.jpg')} alt='' />
+        {/* <img src='../../images/300.jpg' alt='' /> */}
       </div>
     )
   }

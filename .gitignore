@@ -48,3 +48,4 @@ yarn.lock
 
 # Webpack output files
 dist/
+bin/
