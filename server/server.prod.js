@@ -17,6 +17,8 @@ app.get('*', renderHandler)
 // TODO: allow requiring images in components
 // TODO: allow requiring css in components
 // TODO: Add critical css
+// Create a gulp task which creates production bundle, starts prod server, then use criticalcss plugin to get css and output somewhere
+// https://github.com/filamentgroup/criticalcss
 // TODO: server-side async fetching
 // TODO: append trailing slash
 // TODO: non-www to www url rewrite
