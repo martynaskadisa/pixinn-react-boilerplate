@@ -1,1 +1,1 @@
-export { default as Hello } from './Hello/Hello'
+export { default as Navbar } from './Navbar/Navbar'

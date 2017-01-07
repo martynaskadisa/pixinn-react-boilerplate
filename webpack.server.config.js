@@ -47,16 +47,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url-loader',
-      options: {
-        limit: 25000
-      }
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'file-loader',
-      options: {
-        name: '[path][name].[hash].[ext]'
-      }
+      loader: 'url-loader?limit=25000&name=[path][name].[hash].[ext]'
     }]
   },
   postcss: function () {

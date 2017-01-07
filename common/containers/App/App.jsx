@@ -2,13 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import Helmet from 'react-helmet'
 
-// import { styleHelper } from 'helpers'
-import { Hello } from 'components'
-
-// import './App.scss'
-// const styles = [
-//   require('./App.scss')
-// ]
+import { Navbar } from 'components'
 
 class App extends Component {
   render () {
@@ -19,14 +13,7 @@ class App extends Component {
           titleTemplate='Pixinn - %s'
           defaultTitle='Pixinn - Internetinių svetainių kūrimas'
         />
-        <div className='root'>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
-          </ul>
-        </div>
-        <Hello />
+        <Navbar />
         {this.props.children}
       </div>
     )

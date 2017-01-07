@@ -73,7 +73,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'file-loader'
+      loader: 'url-loader?limit=25000&name=[path][name].[hash].[ext]'
     }]
   },
   postcss: function () {

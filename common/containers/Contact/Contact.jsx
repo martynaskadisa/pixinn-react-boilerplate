@@ -9,6 +9,7 @@ class Contact extends React.Component {
           title='Contact'
         />
         <h1>Contact</h1>
+        <p>This boilerplate was created by Martynas Kadiša@Pixinn</p>
       </div>
     )
   }

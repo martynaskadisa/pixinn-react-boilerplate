@@ -1,8 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import style from './About.scss'
-
 class About extends React.Component {
   render () {
     return (
@@ -10,7 +8,9 @@ class About extends React.Component {
         <Helmet
           title='About'
         />
-        <h1>Abouts</h1>
+        <h1>About</h1>
+        <p>Example of a large image loaded with <small><kbd>require('large.img')</kbd></small></p>
+        <img src={require('../../images/large.jpg')} alt='' />
       </div>
     )
   }

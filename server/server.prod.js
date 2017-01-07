@@ -1,22 +1,16 @@
 import path from 'path'
 import Express from 'express'
-import compression from 'compression'
-import morgan from 'morgan'
 
 import renderHandler from '../bin/renderHandler'
-
-console.log(renderHandler)
 
 const app = new Express()
 const port = process.env.PORT || 3000
 const host = process.env.HOST || '0.0.0.0'
 
-app.use(compression())
-app.use(morgan('combined'))
 app.use(Express.static(path.join(__dirname, '../dist')))
 
 app.get('*', renderHandler)
-// TODO: allow requiring images in components
+// TODO: allow requiring images in components // Somewhat done
 // TODO: allow requiring css in components
 // TODO: Add critical css
 // Create a gulp task which creates production bundle, starts prod server, then use criticalcss plugin to get css and output somewhere
@@ -27,6 +21,7 @@ app.get('*', renderHandler)
 // TODO: sitemap
 // TODO: robots.txt
 // TODO: Add socket.io
+// TODO: Show available fonts before fonts download
 
 app.listen(port, host, (error) => {
   if (error) {
