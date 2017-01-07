@@ -1,11 +1,1 @@
-{
-  "javascript": {
-    "main": "/bundle.js"
-  },
-  "styles": {},
-  "assets": {
-    "./common/styles/app.scss": {
-      "_style": "body {\n  background: #f1f1f1;\n  margin: 0 auto;\n  font-family: sans-serif;\n  text-align: center;\n  display: flex; }\n"
-    }
-  }
-}
+{"javascript":{"vendor":"/vendor.bundle.js","app":"/bundle.js"},"styles":{},"assets":{"./~/css-loader!./~/postcss-loader!./~/sass-loader!./common/styles/app.scss":[["C:\\dev\\pixinn-react-boilerplate\\~\\css-loader!.\\~\\postcss-loader!.\\~\\sass-loader!.\\common\\styles\\app.scss.webpack-module","body{background:#f1f1f1;margin:0 auto;font-family:sans-serif;text-align:center;display:-webkit-box;display:-ms-flexbox;display:flex}",""]]}}

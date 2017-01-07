@@ -22,7 +22,7 @@ class Html extends Component {
 
           <link rel='shortcut icon' href='/favicon.ico' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link rel='stylesheet' href='/static/app.min.css' />
+          <link rel='stylesheet' href='/app.min.css' />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {/* Object.keys(assets.styles).map((style, key) =>
             <link href={assets.styles[style]} key={key} media='screen, projection'
@@ -38,8 +38,8 @@ class Html extends Component {
         <body>
           <div id='app' dangerouslySetInnerHTML={{__html: content}} />
           <script dangerouslySetInnerHTML={{__html: `window.__PRELOADED_STATE__=${serialize(store.getState())};`}} charSet='UTF-8' />
-          <script src='/static/vendor.bundle.js' charSet='UTF-8' />
-          <script src='/static/bundle.js' charSet='UTF-8' />
+          {/* <script src='/vendor.bundle.js' charSet='UTF-8' /> */}
+          <script src='/bundle.js' charSet='UTF-8' />
           {/* <script src={assets.javascript.main} charSet='UTF-8' /> */}
         </body>
       </html>
