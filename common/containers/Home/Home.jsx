@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 
 class Home extends React.Component {
@@ -9,6 +9,7 @@ class Home extends React.Component {
           title='Home'
         />
         <h1>Home</h1>
+        <img src={require('../../images/300.jpg')} alt='' />
       </div>
     )
   }

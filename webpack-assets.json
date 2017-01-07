@@ -1,0 +1,11 @@
+{
+  "javascript": {
+    "main": "/bundle.js"
+  },
+  "styles": {},
+  "assets": {
+    "./common/styles/app.scss": {
+      "_style": "body {\n  background: #f1f1f1;\n  margin: 0 auto;\n  font-family: sans-serif;\n  text-align: center;\n  display: flex; }\n"
+    }
+  }
+}

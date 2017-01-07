@@ -1,6 +1,6 @@
 /* This file should only be used in server side */
 
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import { renderToString } from 'react-dom/server'
 import serialize from 'serialize-javascript'
 import Helmet from 'react-helmet'

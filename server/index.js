@@ -1,2 +1,8 @@
 require('babel-register')
-require('./server')
+require('./config')
+
+if (__DEV__) {
+  require('./server.dev')
+} else {
+  require('./server')
+}

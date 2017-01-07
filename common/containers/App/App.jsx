@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import Helmet from 'react-helmet'
 
-import { styleHelper } from 'helpers'
+// import { styleHelper } from 'helpers'
 import { Hello } from 'components'
 
 // import './App.scss'
-const styles = [
-  require('./App.scss')
-]
+// const styles = [
+//   require('./App.scss')
+// ]
 
 class App extends Component {
   render () {
@@ -37,4 +37,5 @@ App.propTypes = {
   children: PropTypes.object
 }
 
-export default styleHelper(App, styles)
+export default App
+// export default styleHelper(App, styles)

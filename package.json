@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-socket-hot-reloading-boilerplate",
+  "name": "pixinn-react-boilerplate",
   "version": "0.0.0",
-  "description": "react-redux-socket-hot-reloading-boilerplate",
+  "description": "React boilerplate with Redux, Socket.io, BrowserSync, server-side rendering and hot-reloading",
   "main": "./server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/candylifter/react-redux-socket-hot-reloading-boilerplate.git"
+    "url": "git+https://github.com/martynaskadisa/pixinn-react-boilerplate.git"
   },
   "author": "Martynas Kadiša",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/candylifter/react-redux-socket-hot-reloading-boilerplate/issues"
+    "url": "https://github.com/martynaskadisa/pixinn-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/candylifter/react-redux-socket-hot-reloading-boilerplate#readme",
+  "homepage": "https://github.com/martynaskadisa/pixinn-react-boilerplate#readme",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.17.0",
@@ -32,6 +32,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
+    "browser-sync": "^2.18.6",
     "css-loader": "^0.25.0",
     "eslint": "^3.8.0",
     "eslint-config-standard": "^6.2.0",
@@ -41,6 +42,8 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-standard": "^2.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
     "isomorphic-style-loader": "^1.1.0",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
@@ -57,10 +60,8 @@
     "babel-register": "^6.18.0",
     "compression": "^1.6.2",
     "cross-env": "^3.1.3",
-    "ejs": "^2.5.2",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.22.0",
     "morgan": "^1.7.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

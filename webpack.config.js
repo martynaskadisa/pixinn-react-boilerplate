@@ -1,11 +1,11 @@
+'use strict'
+
 var path = require('path')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'))
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'eval-cheap-module-source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/index.jsx'
@@ -13,76 +13,62 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'common/index.tpl.html',
+      inject: 'body',
+      filename: 'index.html'
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__CLIENT__': true,
       '__SERVER__': false,
       '__DEV__': true,
-      '__DEVTOOLS__': true
-    }),
-    webpackIsomorphicToolsPlugin.development()
+      '__DEVTOOLS__': true // Toggle Redux DevTools here
+    })
   ],
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        include: __dirname,
-        query: {
-          presets: [ 'react-hmre' ]
-        }
-      }, {
-        test: /\.json?$/,
-        loader: 'json'
-      // }, {
-      //   test: /\.css$/,
-      //   loaders: [
-      //     'isomorphic-style-loader',
-      //     `css-loader?${JSON.stringify({
-      //       sourceMap: true,
-      //       // CSS Modules https://github.com/css-modules/css-modules
-      //       modules: true,
-      //       localIdentName: true,
-      //       // CSS Nano http://cssnano.co/options/
-      //       minimize: true
-      //     })}`,
-      //     'postcss-loader?pack=default'
-      //   ]
-        // loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        loader: 'url-loader'
-      // }, {
-      //   test: /\.css$/,
-      //   loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-
-      }, {
-        test: /\.scss$/,
-        loaders: [
-          'isomorphic-style-loader',
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-        // loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-        // loaders: [
-        //   'isomorphic-style-loader',
-        //   'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        //   'postcss-loader',
-        //   'sass-loader'
-        // ]
-        // loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
-        // loader: 'style!css!postcss!sass'
-
+    /* If you want to be hardcore: */
+    // preLoaders: [{
+    //   test: /\.js?x$/,
+    //   exclude: /node_modules/,
+    //   loader: 'eslint-loader'
+    // }],
+    loaders: [{
+      test: /\.js?x?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      include: __dirname,
+      query: {
+        presets: ['es2015', 'react', 'react-hmre']
       }
-    ]
+    }, {
+      test: /\.css$/,
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader'
+      ]
+    }, {
+      test: /\.scss$/,
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+        'sass-loader'
+      ]
+    }, {
+      test: /\.json?$/,
+      loader: 'json'
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      loader: 'url-loader'
+    }]
   },
   postcss: function () {
     return [
