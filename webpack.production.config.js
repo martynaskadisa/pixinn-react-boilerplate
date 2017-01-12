@@ -4,9 +4,10 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var StatsPlugin = require('stats-webpack-plugin')
-var CompressionPlugin = require('compression-webpack-plugin')
+var nodeExternals = require('webpack-node-externals')
 
-module.exports = {
+var config = {
+  name: 'client',
   devtool: 'cheap-module-source-map',
   entry: [
     './client/index.jsx'
@@ -38,13 +39,6 @@ module.exports = {
       '__SERVER__': false,
       '__DEV__': false,
       '__DEVTOOLS__': false // Toggle Redux DevTools here
-    }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
     })
   ],
   module: {
@@ -64,16 +58,22 @@ module.exports = {
       }
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css!postcss')
+      loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss')
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+      loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
     }, {
       test: /\.json?$/,
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url-loader?limit=25000&name=[path][name].[hash].[ext]'
+      loader: 'url-loader?limit=25000&name=images/[hash].[ext]'
+    }, {
+      test: /\.(ttf|eot|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?name=fonts/[hash].ext'
+    }, {
+      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?name=fonts/[hash].ext'
     }]
   },
   postcss: function () {
@@ -94,3 +94,66 @@ module.exports = {
     ]
   }
 }
+
+var serverConfig = {
+  name: 'server',
+  target: 'node',
+  externals: [nodeExternals()],
+  entry: [
+    './server/handlers/renderHandler.js'
+  ],
+  output: {
+    path: path.join(__dirname, 'bin'),
+    filename: 'renderHandler.js',
+    publicPath: '/',
+    libraryTarget: 'commonjs2'
+  },
+  module: {
+    loaders: [{
+      test: /\.js?x?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      include: __dirname,
+      query: {
+        presets: ['es2015', 'react']
+      }
+    }, {
+      test: /\.css$/,
+      loaders: [
+        'css-loader/locals?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+      ]
+    }, {
+      test: /\.scss$/,
+      loaders: [
+        'css-loader/locals?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'sass-loader'
+      ]
+    }, {
+      test: /\.json?$/,
+      loader: 'json'
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      loader: 'url-loader?limit=25000&emitFile=false&name=images/[hash].[ext]'
+    }, {
+      test: /\.(ttf|eot|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?emitFile=false&name=fonts/[hash].ext'
+    }, {
+      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?emitFile=false&name=fonts/[hash].ext'
+    }]
+  },
+  resolve: {
+    root: __dirname,
+    modulesDirectories: [
+      'node_modules'
+    ],
+    alias: { /* Use .babelrc to set up aliases */ },
+    extensions: ['', '.js', '.jsx']
+  },
+  sassLoader: {
+    includePaths: [
+    ]
+  }
+}
+
+module.exports = [config, serverConfig]

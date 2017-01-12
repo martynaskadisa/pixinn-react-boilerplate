@@ -66,7 +66,13 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url-loader'
+      loader: 'url-loader?limit=25000&name=images/[hash].[ext]'
+    }, {
+      test: /\.(ttf|eot|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?name=fonts/[hash].ext'
+    }, {
+      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: 'file-loader?name=fonts/[hash].ext'
     }]
   },
   postcss: function () {

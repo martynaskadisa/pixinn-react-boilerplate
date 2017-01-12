@@ -1,1 +1,2 @@
-pixinn-react-boilerplate
+# Pixinn React boilerplate
+

@@ -12,7 +12,7 @@ class Html extends Component {
     const head = Helmet.rewind()
 
     return (
-      <html lang='en-us'>
+      <html lang='lt'>
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}

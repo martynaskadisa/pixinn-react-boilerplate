@@ -1,10 +1,8 @@
 body {
-  margin: 40px auto;
-  max-width: 650px;
+  font-family: serif;
   line-height: 1.6;
   font-size: 18px;
   color: #444;
-  padding: 0 10px
 }
 
 h1,
@@ -21,7 +19,8 @@ a {
   color: inherit;
 }
 
-.link--active {
-  font-weight: bold;
-  text-decoration: none;
+.article {
+  margin: 4em auto 0;
+  padding: 0 1em;
+  max-width: 650px;
 }

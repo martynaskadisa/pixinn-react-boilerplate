@@ -4,13 +4,13 @@ import Helmet from 'react-helmet'
 class Contact extends React.Component {
   render () {
     return (
-      <div>
+      <article className='article'>
         <Helmet
           title='Contact'
         />
         <h1>Contact</h1>
         <p>This boilerplate was created by Martynas Kadiša@Pixinn</p>
-      </div>
+      </article>
     )
   }
 }

@@ -1,10 +1,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import './Home.scss'
+
 class Home extends React.Component {
   render () {
     return (
-      <div>
+      <article className='article'>
         <Helmet
           title='Home'
         />
@@ -29,7 +31,7 @@ class Home extends React.Component {
         </ul>
         <p>Example of small image imported with <small><kbd>require('name.jpg')</kbd></small></p>
         <img src={require('../../images/300.jpg')} alt='' />
-      </div>
+      </article>
     )
   }
 }

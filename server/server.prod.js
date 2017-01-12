@@ -1,13 +1,18 @@
 import path from 'path'
 import Express from 'express'
+import compression from 'compression'
 
+import webpackConfig from '../webpack.production.config'
 import renderHandler from '../bin/renderHandler'
 
 const app = new Express()
 const port = process.env.PORT || 3000
 const host = process.env.HOST || '0.0.0.0'
 
-app.use(Express.static(path.join(__dirname, '../dist')))
+const { publicPath } = webpackConfig[0].output
+
+app.use(compression())
+app.use(publicPath, Express.static(path.join(__dirname, '../dist')))
 
 app.get('*', renderHandler)
 // TODO: allow requiring images in components // Somewhat done

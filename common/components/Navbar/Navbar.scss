@@ -1,0 +1,44 @@
+.navbar {
+  background: #fff;
+  position: fixed;
+  width: 100%;
+  padding: .5em 0;
+  top: 0;
+  left: 0;
+  display: block;
+  box-shadow: 0 2px 4px rgba(50,50,93,.1);
+
+  &__link {
+    display: inline-block;
+  }
+}
+
+.navbar__link-list {
+  margin: 0 auto;
+  padding: 0 1em;
+  display: block;
+  list-style: none;
+  max-width: 650px;
+
+  &__item {
+    display: inline-block;
+    margin-right: 1em;
+  }
+}
+
+.navbar__link {
+  color: #999;
+  text-decoration: none;
+
+  &:hover {
+    color: #666;
+  }
+
+  &--active {
+    color: #444;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+}

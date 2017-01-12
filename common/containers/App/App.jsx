@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
 import Helmet from 'react-helmet'
 
+import './App.scss'
 import { Navbar } from 'components'
 
 class App extends Component {
   render () {
     return (
-      <div>
+      <div className='app'>
         <Helmet
           htmlAttributes={{'lang': 'lt'}}
           titleTemplate='Pixinn - %s'
