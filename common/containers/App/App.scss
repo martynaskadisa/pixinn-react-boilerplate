@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+.app__main {
+  width: 100%;
+  min-height: calc(100vh - 4em);
+}

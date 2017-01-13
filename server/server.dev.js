@@ -21,7 +21,8 @@ browserSync({
       }),
       webpackHotMiddleware(compiler)
     ]
-  }
+  },
+  notify: false
 })
 
 // TODO: Add socket.io

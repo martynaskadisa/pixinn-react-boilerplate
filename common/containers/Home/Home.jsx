@@ -20,8 +20,8 @@ class Home extends React.Component {
           <li>Browser-sync</li>
           <li>React-router</li>
           <li>React-helmet</li>
-          <li>Scss</li>
-          <li>Postcss</li>
+          <li>Sass</li>
+          <li>PostCSS</li>
           <li>Eslint with StandardJS config</li>
         </ul>
         <p>Planned for future version:</p>
