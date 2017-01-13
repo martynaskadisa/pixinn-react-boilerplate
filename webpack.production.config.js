@@ -34,7 +34,7 @@ var config = {
       comments: false
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), // // Needed in order to use minified version of React
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), // Needed in order to use minified version of React
       '__CLIENT__': true,
       '__SERVER__': false,
       '__DEV__': false,
@@ -58,10 +58,10 @@ var config = {
       }
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss')
+      loader: ExtractTextPlugin.extract('style', 'css!postcss')
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
+      loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
     }, {
       test: /\.json?$/,
       loader: 'json'
@@ -120,12 +120,12 @@ var serverConfig = {
     }, {
       test: /\.css$/,
       loaders: [
-        'css-loader/locals?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        'css-loader/locals'
       ]
     }, {
       test: /\.scss$/,
       loaders: [
-        'css-loader/locals?modules&camelCase=dashes&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        'css-loader/locals',
         'sass-loader'
       ]
     }, {
