@@ -1,16 +1,20 @@
-FROM node:alpine
+FROM node:boron
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Install app dependencies
-COPY package.json /usr/src/app
-RUN npm install --production
-
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 1337
+# Set our environment variables
+ENV NODE_ENV production
+ENV PORT 80
 
-CMD ["npm", "run", "start:prod"]
+# Install packages and build our app
+RUN npm install
+RUN npm run build
+
+EXPOSE ${PORT}
+
+CMD ["npm", "start"]
