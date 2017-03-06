@@ -34,7 +34,7 @@ var config = {
       comments: false
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': 'production', // Needed in order to use minified version of React
+      'process.env.NODE_ENV': JSON.stringify('production'), // Needed in order to use minified version of React
       '__CLIENT__': true,
       '__SERVER__': false,
       '__DEV__': false,
