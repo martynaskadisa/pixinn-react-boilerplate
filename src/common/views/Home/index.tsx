@@ -8,7 +8,7 @@ class Home extends React.Component<IProps, IState> {
   render () {
     return (
       <div>
-        Homes
+        Home
       </div>
     );
   }

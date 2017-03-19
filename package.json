@@ -5,7 +5,7 @@
   "main": "./server/index.js",
   "scripts": {
     "start": "npm run build:live",
-    "build": "webpack",
+    "build": "webpack -p --progress",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/server/index.ts"
   },
   "engines": {

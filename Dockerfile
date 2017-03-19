@@ -12,7 +12,7 @@ RUN npm install
 COPY . /usr/src/app
 
 # Build our app
-RUN npm run build:prod
+RUN npm run build
 
 # Set our environment variables
 ENV NODE_ENV production
