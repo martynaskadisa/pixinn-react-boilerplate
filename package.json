@@ -1,0 +1,25 @@
+{
+  "name": "pixinn-react-boilerplate",
+  "version": "0.2.0",
+  "description": "React boilerplate with Redux, Socket.io, BrowserSync, server-side rendering and hot-reloading",
+  "main": "./server/index.js",
+  "scripts": {
+  },
+  "engines": {
+    "node": "6.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martynaskadisa/pixinn-react-boilerplate.git"
+  },
+  "author": "Martynas Kadiša",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martynaskadisa/pixinn-react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/martynaskadisa/pixinn-react-boilerplate#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
