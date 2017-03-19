@@ -4,6 +4,9 @@
   "description": "React boilerplate with Redux, Socket.io, BrowserSync, server-side rendering and hot-reloading",
   "main": "./server/index.js",
   "scripts": {
+    "start": "npm run build:live",
+    "build": "webpack",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/server/index.ts"
   },
   "engines": {
     "node": "6.9.5"
@@ -19,7 +22,21 @@
   },
   "homepage": "https://github.com/martynaskadisa/pixinn-react-boilerplate#readme",
   "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.8",
+    "@types/react": "^15.0.16",
+    "@types/react-dom": "^0.14.23",
+    "@types/webpack": "^2.2.11",
+    "awesome-typescript-loader": "^3.1.2",
+    "nodemon": "^1.11.0",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
   },
   "dependencies": {
+    "express": "^4.15.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router-dom": "^4.0.0"
   }
 }
