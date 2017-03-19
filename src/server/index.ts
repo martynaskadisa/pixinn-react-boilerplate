@@ -1,6 +1,7 @@
 import express = require('express');
 import path = require('path');
 import webpackDevMiddleware = require('webpack-dev-middleware');
+import webpackHotMiddleware = require('webpack-hot-middleware');
 import webpack = require('webpack');
 import webpackConfig = require('../../webpack.config');
 
@@ -13,8 +14,9 @@ const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, { 
   noInfo: true, 
-  publicPath: (webpackConfig as webpack.Configuration ).output.publicPath
+  publicPath: (webpackConfig as webpack.Configuration).output.publicPath
 }));
+app.use(webpackHotMiddleware(compiler));
 
 app.use('/assets', express.static(path.resolve(__dirname, '../../dist')));
 

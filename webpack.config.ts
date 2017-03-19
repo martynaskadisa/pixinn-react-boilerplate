@@ -3,7 +3,12 @@ import webpack = require('webpack');
 import { CheckerPlugin, TsConfigPathsPlugin } from 'awesome-typescript-loader';
 
 const config = {
-  entry: path.resolve(__dirname, 'src/client/index.tsx'),
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
+    'webpack/hot/only-dev-server',
+    './src/client/index.tsx'
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -13,13 +18,15 @@ const config = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader'],
       }
     ]
   },
   plugins: [
     new TsConfigPathsPlugin(),
-    new CheckerPlugin()
+    new CheckerPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
   resolve: {
     modules: ['node_modules'],
