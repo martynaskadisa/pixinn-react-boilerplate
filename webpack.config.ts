@@ -15,12 +15,10 @@ const config = {
     publicPath: '/assets/'
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader'],
-      }
-    ]
+    rules: [{
+      test: /\.tsx?$/,
+      loaders: ['react-hot-loader/webpack', 'awesome-typescript-loader'],
+    }]
   },
   plugins: [
     new TsConfigPathsPlugin(),
