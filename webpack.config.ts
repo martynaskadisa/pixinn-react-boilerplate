@@ -1,6 +1,6 @@
-const webpack = require('webpack');
-const path = require('path');
-const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
+import path = require('path');
+import webpack = require('webpack');
+import { CheckerPlugin, TsConfigPathsPlugin } from 'awesome-typescript-loader';
 
 const config = {
   entry: path.resolve(__dirname, 'src/client/index.tsx'),
@@ -28,7 +28,9 @@ const config = {
       'common': path.resolve(__dirname, 'src/common')
     }
   },
-  devtool: 'eval-source-map'
-}
+  devtool: 'eval-source-map',
+  
+} as webpack.Configuration;
 
 module.exports = config;
+

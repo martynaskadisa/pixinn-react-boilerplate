@@ -22,6 +22,10 @@ class App extends React.Component<IProps, IState> {
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
+        <footer>
+          <hr/>
+          Made by Pixinn
+        </footer>
       </div>
     );
   }
